@@ -42,7 +42,8 @@ module.exports = function (grunt) {
                     newHtml = newHtml.replace('${' + metaObj[i].id + '}', metaObj[i].default);
                 }
             }
-            writeOriginal(file.dest + file.src[0], newHtml);
+            //writeOriginal(file.dest + file.src[0], newHtml);
+            writeOriginal('./v2/static/email-template_rvsc-integration.html', newHtml);
         }
 
         function getAttr(str1, attr){
