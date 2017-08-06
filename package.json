@@ -1,6 +1,6 @@
 {
   "name": "grunt-marketo-staticifier",
-  "description": "Converts an integrated Marketo email template into a static version, so that you may work on the integrated version, while testing with the static version",
+  "description": "Converts an integrated Marketo email template into a static version. Now you may work on the integrated version while testing with the static version. Only replaces variables, not tokens",
   "version": "0.1.0",
   "homepage": "https://github.com/Michael-vanderHaas/grunt-marketo-staticifier",
   "author": {
