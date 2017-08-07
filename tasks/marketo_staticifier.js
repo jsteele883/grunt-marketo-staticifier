@@ -11,8 +11,16 @@
 
 var _path = require('path');
 
+
+
 module.exports = function (grunt) {
     grunt.registerMultiTask('marketo_staticifier', 'Builds a non-integrated (static) html version of a marketko email template for testing changes.', function () {
+
+        // replaceAll used to search the html
+        String.prototype.replaceAll = function (find, replace) {
+            var str = this;
+            return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
+        };
 
 
         var metaArray = []; // this will become an array of meta tag, still as strings
@@ -32,6 +40,7 @@ module.exports = function (grunt) {
         };
 
 
+
         function makeNewHtml(file){
             newHtml = origHtml;
             for(var i=0;i<metaObj.length;i++){
@@ -39,11 +48,12 @@ module.exports = function (grunt) {
                     // if no default, lets jsut leave it empty
                     if(!metaObj[i].default) metaObj[i].default = "";
                     // update html
-                    newHtml = newHtml.replace('${' + metaObj[i].id + '}', metaObj[i].default);
+                    newHtml = newHtml.replaceAll( '${' + metaObj[i].id + '}', metaObj[i].default);
                 }
             }
             writeOriginal(file.dest, newHtml);
         }
+
 
         function getAttr(str1, attr){
             var pos1 = str1.indexOf(attr+'="') + 2 + attr.length;
