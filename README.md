@@ -17,6 +17,10 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-marketo-staticifier');
 ```
 
+## Boilerplate to get started quickly
+see Github repo
+https://github.com/Michael-vanderHaas/marketo-staticifier-boilerplate
+
 ## The "marketo_staticifier" task
 
 ### Overview
@@ -25,65 +29,23 @@ In your project's Gruntfile, add a section named `marketo_staticifier` to the da
 ```js
 grunt.initConfig({
   marketo_staticifier: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
+    build: {
+        files: {
+            './templates-static/example1-static.html' : './templates-marketo/example1-integrated.html',
+            './templates-static/example2-static.html' : './templates-marketo/example2-integrated.html'
+            // add extra file [dest : src] here
+        }
+    }
   },
 });
 ```
 
-### Options
-
-#### options.separator
-Type: `String`
-Default value: `',  '`
-
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
-
-### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  marketo_staticifier: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
+### HTML
+Please ensure you wrap all of your Marketo <meta> tags with a custom 'comments'...
+```html
+<!-- marketo start -->
+    <meta class="mktoColor" id="body_bgc" mktoName="Body background colour" default="#f5f5f5">
+    <meta class="mktoColor" id="row_bgc" mktoName="Row background colour" default="#ffffff">
+<!-- marketo end -->
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  marketo_staticifier: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
