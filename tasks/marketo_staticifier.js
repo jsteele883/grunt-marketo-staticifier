@@ -99,7 +99,7 @@ module.exports = function (grunt) {
             } else {
 
                 // if there is one meta left, lets grab that...
-                if(pos1 > 0 ) metaArray.push(str);
+                if(pos1 > 0 ) metaArray.push(str1);
 
                 // we have finished building the array,
                 // lets turn this into the obj
