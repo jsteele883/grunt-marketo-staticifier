@@ -51,6 +51,19 @@ module.exports = function (grunt) {
                     newHtml = newHtml.replaceAll( '${' + metaObj[i].id + '}', metaObj[i].default);
                 }
             }
+            // make valid hrefs
+            newHtml = newHtml.replaceAll('href="mktoString"', 'href="www.rcracer.co.nz"');
+
+            // remove classes
+            newHtml = newHtml.replaceAll('class="mobile-view mktoModule"', 'class="mobile-view"');
+            newHtml = newHtml.replaceAll('class="mktoModule"', '');
+            newHtml = newHtml.replaceAll('class="mktoContainer"', '');
+            
+            // rename id's
+            newHtml = newHtml.replaceAll('id="', 'data-id="');
+
+            // change classNames,id's etc
+            newHtml = newHtml.replaceAll('mkto', 'data-mkto');
             writeOriginal(file.dest, newHtml);
         }
 
